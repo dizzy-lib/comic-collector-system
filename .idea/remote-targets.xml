@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="WSL" type="wsl" uuid="beb98f3b-91ea-4ffc-914f-86e5c409cb16">
+        <config>
+          <option name="distributionMsId" value="Ubuntu" />
+        </config>
+      </target>
+    </targets>
+  </component>
+</project>
