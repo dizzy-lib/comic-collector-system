@@ -14,25 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Servicio de dominio para la gestión de reservas.
- * 
- * PRINCIPIOS DE ARQUITECTURA LIMPIA APLICADOS:
- * 
- * 1. RESPONSABILIDAD ÚNICA: Se encarga únicamente de la lógica de negocio de reservas
- *    que involucra múltiples entidades y no pertenece a una entidad específica.
- * 
- * 2. INVERSIÓN DE DEPENDENCIAS: Depende de abstracciones (IReservaRepository) 
- *    no de implementaciones concretas.
- * 
- * 3. SEPARACIÓN DE CONCERNS: La lógica de negocio está separada de la persistencia
- *    y la presentación.
- * 
- * 4. REGLAS DE NEGOCIO EXPLÍCITAS: Las políticas y reglas están claramente definidas
- *    en métodos con nombres descriptivos.
- * 
- * 5. INDEPENDENCIA DE FRAMEWORKS: No depende de frameworks externos, solo del dominio.
- */
+
 public class ReservaService implements IReservaService {
     
     // Reglas de negocio como constantes

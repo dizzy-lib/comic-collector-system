@@ -15,26 +15,7 @@ import interfaces.repository.IReservaRepository;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Servicio de dominio para la gestión de ventas.
- * 
- * PRINCIPIOS DE ARQUITECTURA LIMPIA APLICADOS:
- * 
- * 1. RESPONSABILIDAD ÚNICA: Se encarga únicamente de la lógica de negocio de ventas
- *    que involucra múltiples entidades (Usuario, Comic, Reserva, Venta).
- * 
- * 2. INVERSIÓN DE DEPENDENCIAS: Depende de abstracciones (repositorios) 
- *    no de implementaciones concretas.
- * 
- * 3. COORDINACIÓN DE AGREGADOS: Maneja la interacción entre diferentes agregados
- *    del dominio de forma consistente.
- * 
- * 4. REGLAS DE NEGOCIO EXPLÍCITAS: Las políticas de venta están claramente definidas
- *    en métodos con nombres descriptivos.
- * 
- * 5. TRANSACCIONALIDAD: Asegura que las operaciones de venta sean atómicas
- *    (reserva se cancela solo si la venta se crea exitosamente).
- */
+
 public class VentaService implements IVentaService {
     
     private final IVentaRepository ventaRepository;

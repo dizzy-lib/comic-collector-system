@@ -13,25 +13,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * Servicio de dominio para la gestión de inventario.
- * 
- * PRINCIPIOS DE ARQUITECTURA LIMPIA APLICADOS:
- * 
- * 1. RESPONSABILIDAD ÚNICA: Se encarga únicamente de la gestión de stock,
- *    disponibilidad y reportes de inventario.
- * 
- * 2. INVERSIÓN DE DEPENDENCIAS: Depende de abstracciones (repositorios) 
- *    no de implementaciones concretas.
- * 
- * 3. SEPARACIÓN DE CONCERNS: Lógica de reportes y análisis separada de
- *    operaciones CRUD básicas.
- * 
- * 4. COORDINACIÓN DE AGREGADOS: Analiza datos de Comic, Reserva y Venta
- *    para generar información consolidada.
- * 
- * 5. SOLO LECTURA: Este servicio no modifica datos, solo los analiza y reporta.
- */
+
 public class InventarioService implements IInventarioService {
     
     private final IComicRepository comicRepository;

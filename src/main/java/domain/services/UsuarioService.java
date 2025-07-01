@@ -17,26 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Servicio de dominio para la gestión de usuarios.
- * 
- * PRINCIPIOS DE ARQUITECTURA LIMPIA APLICADOS:
- * 
- * 1. RESPONSABILIDAD ÚNICA: Se encarga únicamente de la lógica de negocio de usuarios
- *    que involucra validaciones complejas y coordinación con otros agregados.
- * 
- * 2. INVERSIÓN DE DEPENDENCIAS: Depende de abstracciones (repositorios) 
- *    no de implementaciones concretas.
- * 
- * 3. REGLAS DE NEGOCIO CENTRALIZADAS: Todas las políticas relacionadas con usuarios
- *    están definidas en este servicio.
- * 
- * 4. COORDINACIÓN DE AGREGADOS: Maneja la interacción entre Usuario, Reserva y Venta
- *    para operaciones complejas como eliminación de usuarios.
- * 
- * 5. VALIDACIONES DE INTEGRIDAD: Asegura que las operaciones mantengan la
- *    consistencia del dominio.
- */
 public class UsuarioService implements IUsuarioService {
     
     // Reglas de negocio como constantes

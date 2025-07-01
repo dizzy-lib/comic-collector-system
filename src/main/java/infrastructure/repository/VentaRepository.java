@@ -9,31 +9,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Repositorio para gestionar ventas utilizando TreeSet.
- * 
- * DECISIÓN DE ESTRUCTURA DE DATOS:
- * Se utiliza TreeSet por las siguientes razones:
- * 
- * 1. ORDENAMIENTO CRONOLÓGICO: Las ventas se mantienen ordenadas por fecha, esencial para:
- *    - Reportes de ventas cronológicos
- *    - Análisis de tendencias temporales
- *    - Auditorías financieras
- * 
- * 2. BÚSQUEDAS POR RANGO DE FECHAS EFICIENTES: Operaciones como buscarPorFecha() pueden
- *    aprovechar el ordenamiento para encontrar rangos específicos más rápidamente.
- * 
- * 3. NO DUPLICADOS: TreeSet previene automáticamente ventas duplicadas basado en compareTo()
- *    (fecha + ID como criterio de desempate).
- * 
- * 4. ORDEN NATURAL: Al iterar las ventas, siempre se obtienen en orden cronológico,
- *    útil para reportes y análisis.
- * 
- * TRADE-OFFS:
- * - Inserción/eliminación: O(log n) vs O(1) de HashMap
- * - Búsqueda por ID: O(n) vs O(1) de HashMap (pero raramente se busca por ID individual)
- * - Caso de uso: Ideal para ventas donde el análisis temporal es prioritario
- */
 public class VentaRepository implements IVentaRepository {
     private final Set<Venta> ventas = new TreeSet<>();
 

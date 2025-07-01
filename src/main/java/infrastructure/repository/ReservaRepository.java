@@ -10,27 +10,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Repositorio para gestionar reservas utilizando TreeSet.
- * 
- * DECISIÓN DE ESTRUCTURA DE DATOS:
- * Se utiliza TreeSet por las siguientes razones:
- * 
- * 1. ORDENAMIENTO AUTOMÁTICO: Las reservas se mantienen ordenadas por fecha de expiración,
- *    facilitando operaciones como encontrar reservas próximas a expirar.
- * 
- * 2. EFICIENCIA EN BÚSQUEDAS POR RANGO: Operaciones como buscarReservasExpiradas() son
- *    más eficientes (O(log n) + k elementos) vs iterar toda la colección (O(n)).
- * 
- * 3. NO DUPLICADOS: TreeSet previene automáticamente reservas duplicadas basado en compareTo().
- * 
- * 4. ORDEN NATURAL: Al iterar siempre se obtienen ordenadas por fecha de expiración.
- * 
- * TRADE-OFFS:
- * - Inserción/eliminación: O(log n) vs O(1) de HashMap
- * - Memoria: Menor overhead que HashMap (no necesita pares key-value)
- * - Caso de uso: Ideal para reservas donde el orden temporal es crítico
- */
 public class ReservaRepository implements IReservaRepository {
     private final Set<Reserva> reservas = new TreeSet<>();
 
@@ -47,7 +26,7 @@ public class ReservaRepository implements IReservaRepository {
         if (id == null || id.trim().isEmpty()) {
             return Optional.empty();
         }
-        
+
         return reservas.stream()
                 .filter(reserva -> reserva.getId().equals(id))
                 .findFirst();
@@ -63,7 +42,7 @@ public class ReservaRepository implements IReservaRepository {
         if (usuario == null) {
             return new ArrayList<>();
         }
-        
+
         return reservas.stream()
                 .filter(reserva -> reserva.getUsuario().getId() == usuario.getId())
                 .collect(Collectors.toList());
@@ -74,7 +53,7 @@ public class ReservaRepository implements IReservaRepository {
         if (comic == null) {
             return new ArrayList<>();
         }
-        
+
         return reservas.stream()
                 .filter(reserva -> reserva.getComic().getId().equals(comic.getId()))
                 .collect(Collectors.toList());
@@ -85,7 +64,7 @@ public class ReservaRepository implements IReservaRepository {
         if (estado == null) {
             return new ArrayList<>();
         }
-        
+
         return reservas.stream()
                 .filter(reserva -> reserva.getEstadoReserva() == estado)
                 .collect(Collectors.toList());
@@ -99,7 +78,7 @@ public class ReservaRepository implements IReservaRepository {
     @Override
     public List<Reserva> buscarReservasExpiradas() {
         LocalDateTime ahora = LocalDateTime.now();
-        
+
         return reservas.stream()
                 .filter(reserva -> reserva.getFechaExpiracionReserva().isBefore(ahora))
                 .collect(Collectors.toList());
@@ -110,7 +89,7 @@ public class ReservaRepository implements IReservaRepository {
         if (fechaInicio == null || fechaFin == null) {
             return new ArrayList<>();
         }
-        
+
         return reservas.stream()
                 .filter(reserva -> {
                     LocalDateTime fechaReserva = reserva.getFechaReserva();
@@ -124,13 +103,13 @@ public class ReservaRepository implements IReservaRepository {
         if (reserva == null) {
             throw new IllegalArgumentException("La reserva no puede ser nula");
         }
-        
+
         // En TreeSet, primero eliminamos la versión antigua y agregamos la nueva
         Optional<Reserva> reservaExistente = buscarPorId(reserva.getId());
         if (reservaExistente.isEmpty()) {
             throw new ReservaNoEncontradaException("Reserva no encontrada con ID: " + reserva.getId());
         }
-        
+
         reservas.remove(reservaExistente.get());
         reservas.add(reserva);
     }
@@ -140,12 +119,12 @@ public class ReservaRepository implements IReservaRepository {
         if (id == null || id.trim().isEmpty()) {
             throw new IllegalArgumentException("El ID no puede ser nulo o vacío");
         }
-        
+
         Optional<Reserva> reservaAEliminar = buscarPorId(id);
         if (reservaAEliminar.isEmpty()) {
             throw new ReservaNoEncontradaException("Reserva no encontrada con ID: " + id);
         }
-        
+
         reservas.remove(reservaAEliminar.get());
     }
 }
